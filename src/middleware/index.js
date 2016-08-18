@@ -1,15 +1,18 @@
-/**
- * middleware/index.js
- * All middleware are here to import all of them just with one command
- * in the main app.js
- * Note that maybe this is not always desirable if you want to apply
- * any other middleware in a different order into app.js file.
- */
-var logrequest = require('./logrequest');
-var sessions = require('./sessions');
+var express = require('express');
 
 module.exports = function (app) {
-	app.use(logrequest);
-    app.use(sessions);
-}
+  app.use(express.logger('dev'));
 
+  // this is good enough for now but you'll
+  // want to use connect-mongo or similar
+  // for persistant sessions
+  app.use(express.cookieParser());
+  app.use(express.session({ secret: 'building a blog' }));
+  app.use(express.bodyParser());
+
+  // expose session to views
+  app.use(function (req, res, next) {
+    res.locals.session = req.session;
+    next();
+  })
+}

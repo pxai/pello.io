@@ -1,21 +1,30 @@
-/**
- * routes/index.js
- * All routes are here to import all of them just with one command
- * in the main app.js
- * https://github.com/pello-io/simple-express-mongoose
- * Pello Altadill - http://pello.info
- */
-
-var home = require('./home');
-var guestbook = require('./guestbook');
-var session = require('./session');
-var post = require('./post');
-var headers = require('./headers');
+var errors = require('./errors');
+var login = require('./login');
+var posts = require('./posts');
+var msgs = require('./msgs');
+var mongoose = require('mongoose');
+var GuestBook = mongoose.model('GuestBook');
+//var BlogPost = mongoose.model('BlogPost');
 
 module.exports = function (app) {
-    home(app);
-    guestbook(app);
-    post(app);
-    session(app);
-    headers(app);
+
+  // home page
+  app.get('/', function (req, res, next) {
+    GuestBook.find().sort('when').limit(10).exec(function (err, msgs) {
+      if (err) return next(err);
+      res.render('home.jade', { msgs: msgs });
+    })
+  })
+
+  // login / logout routes
+  login(app);
+
+  // blog post crud
+  //posts(app);
+
+  // blog post crud
+  msgs(app);
+
+  // error handlers
+  errors(app);
 }

@@ -1,8 +1,8 @@
 /**
 * app.js
 * Main entrypoint for the app
-* https://github.com/pxai/pello-io
- * Pello Altadill - http://pello.io
+* https://github.com/pello-io/simple-express-mongoose
+ * Pello Altadill - http://pello.info
 */
 var express = require('express');
 var config = require('config');

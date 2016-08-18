@@ -1,2 +1,24 @@
-pello.io
-Under construction
+<!DOCTYPE html>
+<html ng-app="pello">
+<head lang="en" ng-controller="HeadCtrl">
+    <meta charset="UTF-8">
+    <title ng-bind="title"></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="{{description}}">
+	<meta name="keywords" content="{{keywords}}">
+	<meta name="author" content="{{author}}">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+	<a href="#sample">Sample</a>
+	<a href="#other">Other</a>
+Hay algo?
+<div ng-controller="HomeCtrl">
+	<div>Sample data: {{sample}}</div>
+	<span ng-repeat="tech in awesomeThings">{{tech}}</span>
+</div>
+<div ng-view></div>
+<script type="text/javascript" data-main="js/main"
+src="js/vendor/require.js"></script>
+</body>
+</html>
