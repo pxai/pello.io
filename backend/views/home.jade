@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  if session.isLoggedIn
+    p
+      a(href="/msg/create") New msg
+  if !(msgs && msgs.length)
+    p Nothing to see here. Move along...
+  else
+    ul.msgs
+      each msg in msgs
+        li
+          h2
+            a(href="/msg/#{msg.id}")= msg.title
+

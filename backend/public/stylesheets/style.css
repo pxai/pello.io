@@ -1,0 +1,17 @@
+/**
+* Very simple css style for guestbook
+* https://github.com/pello-io/simple-express-mongoose
+* Pello Altadill - http://pello.info
+*/
+body {
+  padding: 50px;
+  font: 14px arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.gbmsg {
+    margin-bottom: 4em;
+}
