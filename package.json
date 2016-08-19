@@ -2,11 +2,15 @@
   "name": "angular2-webpack-sample",
   "version": "1.0.0",
   "license": "MIT",
-  "repository" :{ "type" : "git" , "url" : "https://github.com/pxai/angular2-webpack-sample.git"},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pxai/angular2-webpack-sample.git"
+  },
   "scripts": {
     "clean": "rimraf node_modules doc dist && npm cache clean",
     "clean-install": "npm run clean && npm install",
     "clean-start": "npm run clean-install && npm start",
+    "backend": "cd backend && node app.js",
     "watch": "webpack --watch --progress --profile",
     "build": "rimraf dist && webpack --progress --profile --bail",
     "server": "webpack-dev-server --inline --progress --port 8080",
@@ -55,9 +59,10 @@
     "karma": "1.1.2",
     "karma-chrome-launcher": "^1.0.1",
     "karma-coverage": "^1.0.0",
+    "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
     "karma-mocha-reporter": "^2.0.3",
-    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-phantomjs-launcher": "^1.0.1",
     "karma-remap-istanbul": "0.1.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "1.7.0",

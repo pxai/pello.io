@@ -43,7 +43,7 @@ app.use(expressSession({secret: 'tannedkrab',
             store: require('mongoose-session')(mongoose)}) );
 
 // We set middleware
-middleware(app);
+//middleware(app);
 
 // We set routes
 routes(app);
@@ -53,5 +53,5 @@ app.use(express.static('public'));
 
 // And there we go, listening on port 3000
 app.listen(config.port, function () {
-    console.log('now listening on http://localhost:' + config.port);
+    console.log('Now listening on http://localhost:' + config.port);
 });

@@ -42,8 +42,8 @@ schema.plugin(createdDate);
 // when new blogposts are created, lets tweet
 // npm install mongoose-lifecycle
 // http://plugins.mongoosejs.com?q=events
-var lifecycle = require('mongoose-lifecycle');
-schema.plugin(lifecycle);
+// var lifecycle = require('mongoose-lifecycle');
+// schema.plugin(lifecycle);
 
 // compile the model
 var Post = mongoose.model('BlogPost', schema);
