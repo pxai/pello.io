@@ -1,30 +1,9 @@
-var errors = require('./errors');
-var login = require('./login');
-var posts = require('./posts');
-var msgs = require('./msgs');
-var mongoose = require('mongoose');
-var GuestBook = mongoose.model('GuestBook');
-//var BlogPost = mongoose.model('BlogPost');
+var express = require('express');
+var router = express.Router();
 
-module.exports = function (app) {
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
 
-  // home page
-  app.get('/', function (req, res, next) {
-    GuestBook.find().sort('when').limit(10).exec(function (err, msgs) {
-      if (err) return next(err);
-      res.render('home.jade', { msgs: msgs });
-    })
-  })
-
-  // login / logout routes
-  login(app);
-
-  // blog post crud
-  //posts(app);
-
-  // blog post crud
-  msgs(app);
-
-  // error handlers
-  errors(app);
-}
+module.exports = router;

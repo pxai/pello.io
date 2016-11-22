@@ -1,57 +1,46 @@
-/**
-* app.js
-* Main entrypoint for the app
-* https://github.com/pello-io/simple-express-mongoose
- * Pello Altadill - http://pello.info
-*/
 var express = require('express');
-var config = require('config');
-var expressSession = require('express-session');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var i18next = require('i18next');
-var mongoose = require('mongoose');
 
-i18next.init();
-
-// read them synchronously!
-/*i18next.init({ getAsync: false , lng: 'es-ES',fallbackLng: 'es-ES' ,preload: ['en-US', 'es-ES'],debug: true},function(t) {
-    console.log('Loaded resources ');
-    console.log('Lang:' + i18next.lng() +', App name' + i18next.t("app.name"));
-})*/;
-
-
-var models = require('./models');
-var routes = require('./routes');
-var middleware = require('./middleware');
-
+var index = require('./routes/index');
+var users = require('./routes/users');
 
 var app = express();
 
-// i18n
-app.use(i18next.handle);
-i18next.registerAppHelper(app)
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
-// If we want to use post data:
-app.use(bodyParser({extended: true}));
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', index);
+app.use('/users', users);
 
-// For session data:
-app.use(expressSession({secret: 'tannedkrab',
-            resave: true,
-            saveUninitialized: true,
-            key: 'session',
-            store: require('mongoose-session')(mongoose)}) );
-
-// We set middleware
-//middleware(app);
-
-// We set routes
-routes(app);
-
-// We set static content
-app.use(express.static('public'));
-
-// And there we go, listening on port 3000
-app.listen(config.port, function () {
-    console.log('Now listening on http://localhost:' + config.port);
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;
