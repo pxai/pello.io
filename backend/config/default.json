@@ -1,0 +1,13 @@
+{
+  "backend": {
+    "db": {
+      "host": "localhost",
+      "port": 5984,
+      "dbname": "customers"
+    },
+    "www": {
+      "port": 3000,
+      "public": "public"
+    }
+  }
+}
