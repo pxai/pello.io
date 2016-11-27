@@ -1,7 +1,7 @@
 {
   "backend": {
     "www": {
-      "port": 3000,
+      "port": 80,
       "public": "public"
     },
     "mongoUrl" : "mongodb://localhost/pelloio"

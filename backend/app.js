@@ -7,8 +7,10 @@ var bodyParser = require('body-parser');
 var debug = require('debug')('backend:server');
 var http = require('http');
 var config = require('config');
+var mongoose = require('./models');
 
-console.log('Loading server in ' + 'http://localhost:'+config.get('backend.www.port'));
+//console.log('Loading server in ' + 'http://localhost:'+config.get('backend.www.port'));
+console.log('Loading server in ' + 'http://localhost:'+ config.backend.www.port);
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -54,7 +56,7 @@ app.use(function(err, req, res, next) {
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(config.get('backend.www.port') || process.env.PORT || '3000');
+var port = normalizePort(config.backend.www.port || process.env.PORT || '3000');
 app.set('port', port);
 
 /**
